@@ -2,7 +2,7 @@ import time
 st=time.time()
 from lxml import etree
 import requests
-q : str=int(input("Enter input for search:"))
+q : str=input("Enter input for search:")
 url = f"https://www.flipkart.com/search?q={'&'.join(q.split())}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off"
              
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0'}
