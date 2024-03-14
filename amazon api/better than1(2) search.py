@@ -2,7 +2,7 @@ import requests
 
 url = "https://amazon-merchant-data.p.rapidapi.com/search-products"
 
-querystring = {"term":"iphone 12","country":"in"}
+querystring = {"term":"ups battery","country":"in"}
 
 headers = {
 	"X-RapidAPI-Key": "912fd7ecd8msh6444ef1b2239c88p1b8993jsn343eee19f83c",

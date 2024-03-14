@@ -1,40 +1,18 @@
-import openai
+import textwrap
 
-# Set your API key
-openai.api_key = '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'
+import google.generativeai as genai
 
-# Provide the prompt text
-prompt_text = "Once upon a time,"
+from IPython.display import Markdown
 
-# Call the completion API
-response = openai.Completion.create(
-    engine="text-davinci-002",
-    prompt=prompt_text,
-    max_tokens=50
-)
 
-# Get the generated completion
-completion_text = response.choices[0].text.strip()
+def to_markdown(text):
+  text = text.replace('•', '  *')
+  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
 
-# Print the generated completion
-print("Generated text:", completion_text)
-import openai
+genai.configure(api_key="AIzaSyCI-_EvYzkVMH6yRjrWwhDRGGyUXSIj1Fo")
 
-# Set your API key
-openai.api_key = 'YOUR_API_KEY'
-
-# Provide the prompt text
-prompt_text = "Once upon a time,"
-
-# Call the completion API
-response = openai.Completion.create(
-    engine="text-davinci-002",
-    prompt=prompt_text,
-    max_tokens=50
-)
-
-# Get the generated completion
-completion_text = response.choices[0].text.strip()
-
-# Print the generated completion
-print("Generated text:", completion_text)
+model = genai.GenerativeModel('gemini-pro')
+product="https://www.amazon.in/Exide-150Ah-Instabrite-Inveter-Battery/dp/B015B5454A/ref=sr_1_47?dib=eyJ2IjoiMSJ9.qRrhVYUVURy0LKDL-cTunRbrXYNqVLhJWDoiyNKW7f8pLeFzoEoPiSeLskKcUjVAPgnrlkFmrORRw9szzFP6aDSkGjqH6JUh1HUIJTZSPh90mahZCvO0b4Hs70O5l791PQI2cbPqQV4PDB76TUMidecj5jDwd5h76KuUxGH2sYV8v2Nie3jKk1CCzAgCGcAFLzRkeNLEJo3UK4OEOUnfTeF7vc5yZ7_PufP1lZQjdvw5fRy0KkEEbhQtv-Fctp0Mac7vbNhIkCy_gc9jk5AeFcZ0ijQHjNA68cj76GU4IOo.O8OoXfVRcHNzc2R3IUB8L5KndEKnwno25dwQz4_yrG4&dib_tag=se&keywords=ups+battery&qid=1710374745&sr=8-47"#"TechSupreme SMPS Battery Charger for Bike, UPS Clip Battery Charger Worldwide Adaptor12 Volt 7 amp Battery Charger"
+response = model.generate_content(f"Provide a concise opinion on {product} 11 after analyzing customer reviews on amazon.simply Opinion score for 5 in the last line based on your opinion")
+print(response.text)
+print(to_markdown(response.text))
